@@ -26,7 +26,7 @@ public class LinkedListCycle {
         return false;
     }
 
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

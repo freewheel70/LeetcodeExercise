@@ -108,7 +108,7 @@ public class MergeTwoSortedLists {
         System.out.println(node.val);
     }
 
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

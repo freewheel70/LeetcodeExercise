@@ -24,7 +24,7 @@ public class RemoveDuplicatesfromSortedList {
 
     }
 
-    class ListNode {
+    private class ListNode {
         int val;
         ListNode next;
 
