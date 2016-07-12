@@ -9,61 +9,67 @@ public class ReverseInteger {
     public int reverse(int x) {
         if (x == 0) return 0;
         if (x > 0) {
-            return Integer.valueOf(reversePositive(String.valueOf(x), true));
+            if (x < 10) {
+                return x;
+            }
+            return Integer.valueOf(reversePositive(x));
         } else {
+            if (x > -10) {
+                return x;
+            }
             if (x == Integer.MIN_VALUE) {
                 return 0;
             }
-            String negativeNum = "-" + reversePositive(String.valueOf(x), false);
-            return Integer.valueOf(negativeNum);
+            return -Integer.valueOf(reversePositive(-x));
         }
     }
 
-    private String reversePositive(String str, boolean isPositive) {
-        if (!isPositive) {
-            str = str.substring(1);
-        }
+    private String reversePositive(int x) {
+        String str = String.valueOf(x);
         char[] chars = str.toCharArray();
         int length = chars.length;
-        for (int i = 0; i < length / 2; i++) {
-            char temp = chars[i];
-            chars[i] = chars[length - 1 - i];
-            chars[length - 1 - i] = temp;
-        }
-
-        String result = String.valueOf(chars);
-        if (result.length() == 10) {
-            if (isPositive) {
-                for (int i = 0; i < 10; i++) {
-                    if (result.charAt(i) > MAX_NUM[i]) {
+        if (length < 10) {
+            for (int i = 0; i < length / 2; i++) {
+                char temp = chars[i];
+                chars[i] = chars[length - 1 - i];
+                chars[length - 1 - i] = temp;
+            }
+        } else {
+            boolean shouldValid = false;
+            for (int i = 0; i < length / 2; i++) {
+                char temp = chars[length - 1 - i];
+                chars[length - 1 - i] = chars[i];
+                chars[i] = temp;
+                if (!shouldValid) {
+                    if (temp > MAX_NUM[i]) {
                         return "0";
-                    } else if (result.charAt(i) < MAX_NUM[i]) {
-                        break;
-                    }
-                }
-            } else {
-                for (int i = 0; i < 10; i++) {
-                    if (result.charAt(i) < MAX_NUM[i]) {
-                        return "0";
-                    } else if (result.charAt(i) > MAX_NUM[i]) {
-                        break;
+                    } else if (temp < MAX_NUM[i]) {
+                        shouldValid = true;
                     }
                 }
             }
+
+            for (int i = length / 2; i < 10; i++) {
+                if (chars[i] > MAX_NUM[i]) {
+                    return "0";
+                } else if (chars[i] < MAX_NUM[i]) {
+                    break;
+                }
+            }
+
         }
-        return result;
+
+        return new String(chars);
     }
 
     public static void main(String[] args) {
-//        test(Integer.MAX_VALUE);
-        test(Integer.MIN_VALUE+1);
-//        test(Integer.MIN_VALUE + 1);
-//        test(-8989);
-//        test(2000);
-//        test(2147483647);
-//        test(2111111111);
-//        test(-2147483648);
-//        test(-2147483648);
+        test(Integer.MAX_VALUE);
+        test(Integer.MIN_VALUE + 1);
+        test(Integer.MIN_VALUE + 1);
+        test(-8989);
+        test(2000);
+        test(2147483647);
+        test(2111111111);
     }
 
     private static void test(int i) {
