@@ -75,10 +75,10 @@ public class SwapNodesinPairs {
 
         node1.next = node2;
         node2.next = null;
-//        node3.next = node4;
-//        node4.next = node5;
-//        node5.next = null;
-//        node6.next = null;
+//        node3.beneath = node4;
+//        node4.beneath = node5;
+//        node5.beneath = null;
+//        node6.beneath = null;
 
         printNode(node1);
 

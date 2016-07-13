@@ -6,7 +6,7 @@ package leetcode;
 public class ReverseInteger {
     private static char[] MAX_NUM = "2147483647".toCharArray();
 
-    public int reverse(int x) {
+    public int reverse1(int x) {
         if (x == 0) return 0;
         if (x > 0) {
             if (x < 10) {
@@ -62,14 +62,48 @@ public class ReverseInteger {
         return new String(chars);
     }
 
+    public int reverse(int x) {
+        if (x < 10 && x > -10) return x;
+        if (x > 0) {
+            int remainder = (x % 10);
+            x /= 10;
+            int result = remainder;
+            while (x >= 10) {
+                remainder = (x % 10);
+                x /= 10;
+                result = (result * 10) + remainder;
+            }
+            if (result > (Integer.MAX_VALUE / 10)) {
+                return 0;
+            }
+            result = (result * 10) + x;
+            return result < 0 ? 0 : result;
+        } else {
+            int remainder = (x % 10);
+            x /= 10;
+            int result = remainder;
+            while (x <= -10) {
+                remainder = (x % 10);
+                x /= 10;
+                result = (result * 10) + remainder;
+            }
+            if (result < (Integer.MIN_VALUE / 10)) {
+                return 0;
+            }
+            result = (result * 10) + x;
+            return result > 0 ? 0 : result;
+        }
+    }
+
     public static void main(String[] args) {
-        test(Integer.MAX_VALUE);
+//        test(Integer.MAX_VALUE);
         test(Integer.MIN_VALUE + 1);
-        test(Integer.MIN_VALUE + 1);
-        test(-8989);
-        test(2000);
+        test(Integer.MIN_VALUE);
+//        test(-8989);
+        test(1534236469);
+        test(-100);
         test(2147483647);
-        test(2111111111);
+//        test(2111111111);
     }
 
     private static void test(int i) {

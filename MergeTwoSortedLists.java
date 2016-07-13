@@ -23,21 +23,21 @@ public class MergeTwoSortedLists {
 
     public void mergeNodes(ListNode targetNode, ListNode l1, ListNode l2) {
 //        if (l1 == null && l2 == null) {
-//            targetNode.next = null;
+//            targetNode.beneath = null;
 //            return;
 //        } else if (l1 == null && l2 != null) {
-//            targetNode.next = l2;
-//            mergeNodes(targetNode.next, l1, l2.next);
+//            targetNode.beneath = l2;
+//            mergeNodes(targetNode.beneath, l1, l2.beneath);
 //        } else if (l1 != null && l2 == null) {
-//            targetNode.next = l1;
-//            mergeNodes(targetNode.next, l1.next, l2);
+//            targetNode.beneath = l1;
+//            mergeNodes(targetNode.beneath, l1.beneath, l2);
 //        } else {
 //            if (l1.val < l2.val) {
-//                targetNode.next = l1;
-//                mergeNodes(targetNode.next, l1.next, l2);
+//                targetNode.beneath = l1;
+//                mergeNodes(targetNode.beneath, l1.beneath, l2);
 //            } else {
-//                targetNode.next = l2;
-//                mergeNodes(targetNode.next, l1, l2.next);
+//                targetNode.beneath = l2;
+//                mergeNodes(targetNode.beneath, l1, l2.beneath);
 //            }
 //        }
 
