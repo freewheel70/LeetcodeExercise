@@ -9,9 +9,7 @@ public class MinStack {
 
     Node top;
     boolean firstPush = true;
-    int min;
-
-    HashMap<Integer, Integer> numsMap = new HashMap<>();
+    int min, lastMin;
 
     public MinStack() {
 
@@ -23,32 +21,35 @@ public class MinStack {
         top = newNode;
         if (firstPush || x < min) {
             min = x;
+            lastMin = min;
             firstPush = false;
         }
-        Integer count = numsMap.get(x);
-        numsMap.put(x, (count == null) ? 1 : (count + 1));
     }
 
     public void pop() {
-        Integer count = numsMap.get(top.value);
-        if (count == 1) {
-            numsMap.remove(top.value);
-        } else {
-            numsMap.put(top.value, count - 1);
-        }
+        int originalTopVal = top.value;
         top = top.beneath;
         if (top == null) {
             firstPush = true;
             min = 0;
-        } else {
+        } else if (min == originalTopVal) {
             calculateMin();
         }
     }
 
     private void calculateMin() {
-        List<Integer> nums = new ArrayList<>(numsMap.keySet());
-        Collections.sort(nums);
-        min = nums.get(0);
+        if (min == top.value) return;
+        min = top.value;
+        Node temp = top;
+        while (temp.beneath != null) {
+            temp = temp.beneath;
+            if (temp.value < min) {
+                min = temp.value;
+                if (min == lastMin)
+                    break;
+            }
+        }
+        lastMin = min;
     }
 
     public int top() {
@@ -67,4 +68,20 @@ public class MinStack {
             this.value = value;
         }
     }
+
+    public static void main(String[] args) {
+        MinStack minStack = new MinStack();
+        minStack.push(2);
+        minStack.push(0);
+        minStack.push(3);
+        minStack.push(0);
+        minStack.getMin();
+        minStack.pop();
+        minStack.getMin();
+        minStack.pop();
+        minStack.getMin();
+        minStack.pop();
+        minStack.getMin();
+    }
+
 }
