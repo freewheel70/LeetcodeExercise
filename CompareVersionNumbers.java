@@ -1,5 +1,7 @@
 package leetcode;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 /**
  * Created by Administrator on 2016/7/15.
  */
@@ -67,49 +69,74 @@ public class CompareVersionNumbers {
         int length1 = version1.length();
         int length2 = version2.length();
         int start1 = 0, start2 = 0;
+        int currentVer1, currentVer2;
         int end1 = version1.indexOf('.');
         if (end1 == -1) {
-            end1 = length1;
+            return compareShortVersion1(version1, version2);
         }
         int end2 = version2.indexOf('.');
         if (end2 == -1) {
-            end2 = length2;
+            return -compareVersion(version2, version1);
         }
 
-        int currentVer1, currentVer2;
-        do {
-            currentVer1 = (start1 == end1) ? 0 : Integer.parseInt(version1.substring(start1, end1));
-            currentVer2 = (start2 == end2) ? 0 : Integer.parseInt(version2.substring(start2, end2));
+        while (!(start1 > end1 && start2 > end2)) {
+            currentVer1 = (start1 > end1) ? 0 : Integer.parseInt(version1.substring(start1, end1));
+            currentVer2 = (start2 > end2) ? 0 : Integer.parseInt(version2.substring(start2, end2));
             if (currentVer1 > currentVer2) {
                 return 1;
             } else if (currentVer1 < currentVer2) {
                 return -1;
             }
-            if (start1 != end1) {
-                start1 = end1 + 1;
-            }
-            if (start2 != end2) {
-                start2 = end2 + 1;
-            }
+
+            start1 = end1 + 1;
             end1 = version1.indexOf('.', start1);
             if (end1 == -1) {
                 end1 = length1;
             }
+
+            start2 = end2 + 1;
             end2 = version2.indexOf('.', start2);
             if (end2 == -1) {
                 end2 = length2;
             }
-        } while (end1 < length1 || end2 < length2);
+        }
 
         return 0;
+    }
 
+    private int compareShortVersion1(String version1, String version2) {
+        int verNum1 = Integer.parseInt(version1);
+        return compareShortVersion1(verNum1, version2);
+    }
+
+    private int compareShortVersion1(int verNum1, String version2) {
+        int verNum2;
+        int start2 = 0;
+        int end2 = version2.indexOf('.');
+        if (end2 == -1) {
+            verNum2 = Integer.parseInt(version2);
+            return verNum1 > verNum2 ? 1 : (verNum1 == verNum2 ? 0 : -1);
+        } else {
+            verNum2 = Integer.parseInt(version2.substring(start2, end2));
+            if (verNum1 > verNum2) {
+                return 1;
+            } else if (verNum1 < verNum2) {
+                return -1;
+            } else {
+                return compareShortVersion1(0, version2.substring(end2 + 1));
+            }
+
+        }
     }
 
     public static void main(String[] args) {
-//        test("1.2.3", "2.1");
-//        test("12.2.0", "12.2");
-//        test("1.2.3", "1.2.1.3");
+        test("1.2.3", "2.1");
+        test("12.2.0", "12.2");
+        test("1.2.3", "1.2.1.3");
         test("1.0.1", "1");
+        test("1", "0");
+
+//        System.out.println("1.0.1".substring(4, 5));
     }
 
     private static void test(String version1, String version2) {
