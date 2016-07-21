@@ -71,18 +71,30 @@ public class SingleNumberIII {
 
     }
 
-    //TODO
     public int[] singleNumber(int[] nums) {
-        int length = nums.length;
-        if (length == 2) return nums;
-
-        int combineResult = 0;
-
-        for (int i = 0; i < length; i++) {
-            combineResult ^= nums[i];
+        // Pass 1 :
+        // Get the XOR of the two numbers we need to find
+        int diff = 0;
+        for (int num : nums) {
+            diff ^= num;
         }
+        // Get its last set bit
+        diff &= -diff;
 
-        return new int[]{1, 2};
+        // Pass 2 :
+        int[] rets = {0, 0}; // this array stores the two numbers we will return
+        for (int num : nums)
+        {
+            if ((num & diff) == 0) // the bit is not set
+            {
+                rets[0] ^= num;
+            }
+            else // the bit is set
+            {
+                rets[1] ^= num;
+            }
+        }
+        return rets;
     }
 
     public static void main(String[] args) {
