@@ -83,13 +83,11 @@ public class SingleNumberIII {
 
         // Pass 2 :
         int[] rets = {0, 0}; // this array stores the two numbers we will return
-        for (int num : nums)
-        {
+        for (int num : nums) {
             if ((num & diff) == 0) // the bit is not set
             {
                 rets[0] ^= num;
-            }
-            else // the bit is set
+            } else // the bit is set
             {
                 rets[1] ^= num;
             }
@@ -98,8 +96,12 @@ public class SingleNumberIII {
     }
 
     public static void main(String[] args) {
-        test(new int[]{1, 2, 5, 3, 2, 5});
-        test(new int[]{-1638685546, -2084083624, -307525016, -930251592, -1638685546, 1354460680, 623522045, -1370026032, -307525016, -2084083624, -930251592, 472570145, -1370026032, 1063150409, 160988123, 1122167217, 1145305475, 472570145, 623522045, 1122167217, 1354460680, 1145305475});
+        //test(new int[]{1, 2, 5, 3, 2, 5});
+        //test(new int[]{-1638685546, -2084083624, -307525016, -930251592, -1638685546, 1354460680, 623522045, -1370026032, -307525016, -2084083624, -930251592, 472570145, -1370026032, 1063150409, 160988123, 1122167217, 1145305475, 472570145, 623522045, 1122167217, 1354460680, 1145305475});
+        int num = 9;
+        System.out.println(Integer.toBinaryString(num)+" "+ Integer.toBinaryString(-num));
+        num &= (-num);
+        System.out.println(num+" "+ Integer.toBinaryString(num));
     }
 
     private static void test(int[] nums) {
