@@ -6,7 +6,6 @@ package leetcode;
 public class KMPStringMatcher {
 
     public static void main(String[] args) {
-        //TODO test
         System.out.println(new KMPStringMatcher().indexOf("helloworld","abcdabced"));
     }
 
