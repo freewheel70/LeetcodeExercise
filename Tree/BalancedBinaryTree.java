@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.Tree;
 
 /**
  * Created by Administrator on 2016/6/27.
@@ -44,15 +44,6 @@ public class BalancedBinaryTree {
     }
 
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);

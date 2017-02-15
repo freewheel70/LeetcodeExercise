@@ -1,7 +1,4 @@
-package leetcode;
-
-import java.util.ArrayList;
-import java.util.List;
+package leetcode.DynamicProgramming;
 
 /**
  * Created by freewheel on 2017/2/9.

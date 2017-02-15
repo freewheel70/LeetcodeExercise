@@ -1,6 +1,4 @@
-package leetcode;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
+package leetcode.Others;
 
 /**
  * Created by freewheel on 2017/2/13.

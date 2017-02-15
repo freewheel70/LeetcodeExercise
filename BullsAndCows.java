@@ -23,7 +23,7 @@ public class BullsAndCows {
             }
 
             for (int i = 0; i < 10; i++) {
-                cow += lessOne(secretFlags[i], guessFlags[i]);
+                cow += Math.min(secretFlags[i], guessFlags[i]);
             }
         }
 
@@ -33,10 +33,6 @@ public class BullsAndCows {
         stringBuilder.append(cow);
         stringBuilder.append('B');
         return stringBuilder.toString();
-    }
-
-    private int lessOne(int secretFlag, int guessFlag) {
-        return (secretFlag < guessFlag) ? secretFlag : guessFlag;
     }
 
     private int charToIndex(char aChar) {
