@@ -7,15 +7,6 @@ import java.util.List;
  * Created by freewheel on 2017/2/14.
  */
 public class BinaryTreePaths {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     List<String> result = new ArrayList<>();
 

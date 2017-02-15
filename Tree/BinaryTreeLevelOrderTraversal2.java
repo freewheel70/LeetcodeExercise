@@ -23,15 +23,7 @@ public class BinaryTreeLevelOrderTraversal2 {
         new BinaryTreeLevelOrderTraversal2().levelOrderBottom(node1);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> wrapList = new LinkedList<List<Integer>>();
