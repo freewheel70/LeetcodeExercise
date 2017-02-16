@@ -24,7 +24,6 @@ public class BinaryTreeLevelOrderTraversal2 {
     }
 
 
-
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> wrapList = new LinkedList<List<Integer>>();
         levelMaker(wrapList, root, 0);
