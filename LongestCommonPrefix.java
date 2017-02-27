@@ -4,7 +4,9 @@ package leetcode;
  * Created by Administrator on 2016/7/8.
  */
 public class LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
+
+
+    public String longestCommonPrefix1(String[] strs) {
         if (strs.length == 0) return "";
         if (strs.length == 1) return strs[0];
         String commonPrefix = strs[0];
@@ -43,6 +45,39 @@ public class LongestCommonPrefix {
     public static void main(String[] args) {
         LongestCommonPrefix prefix = new LongestCommonPrefix();
         System.out.println(prefix.longestCommonPrefix(new String[]{"c", "c"}));
+        System.out.println("sub 0 0 : "+"hello".substring(0,0));
+    }
+
+
+    public String longestCommonPrefix(String[] strs) {
+        if(strs==null || strs.length==0) return "";
+        int len = strs.length;
+        if(len==1) return strs[0];
+
+        String prefix = strs[0];
+        boolean keepGoing = true;
+
+        int index = 0;
+        for(; index < prefix.length(); index++){
+
+            char currentChar = prefix.charAt(index);
+
+            for(int i = 1 ; i < len; i++){
+
+                String currentStr = strs[i];
+
+                if(index >= currentStr.length() ||currentStr.charAt(index)!=currentChar){
+                    keepGoing = false;
+                    break;
+                }
+
+            }
+
+            if(!keepGoing) break;
+        }
+
+
+        return prefix.substring(0,index);
 
     }
 
